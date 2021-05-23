@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* MAIN NAV -------- */
+
+.main-nav li {
+  display: inline-block;
+}
+.main-nav li + li {
+  margin-left: .6em;
+}
+.main-nav a {
+  font-size: .85em;
+  font-weight: bold;
+  color: #fff;
+  padding: .2em .8em;
+  border-radius: .40em;
+  background: #16a5d1;
+  transition: .2s;
+}
+.main-nav a:hover,
+.main-nav a.active {
+  color: #fff;
+  background: #0a5569;
+}
