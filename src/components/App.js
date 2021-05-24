@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
 import React from 'react';
+import apiKey from '../config';
 import SearchForm from './SearchForm';
 import Nav from './Nav';
 import PhotoContainer from './PhotoContainer';
