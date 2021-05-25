@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import apiKey from '../config';
 import axios from  'axios';
 import {
@@ -15,11 +15,50 @@ import NotFound from './NotFound';
 
 
 {/*const App = ({match}) => (*/}
-const App = () => (
-  <BrowserRouter>
+class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      photos: []
+    };
+  }
+
+  componentDidMount() {
+    this.getBirdPhotos();
+  }
+
+ getBirdPhotos = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=birds&safe_search=&per_page=24&format=json&nojsoncallback=1`)
+    .then(responseData => {
+      console.log(responseData);
+      this.setState({ photos: responseData.data.photos.photo });
+    })
+  }
+
+  render() {
+    {console.log(this.state.photos)}
+    return(
+      <BrowserRouter>
+        <div className="container">
+          <SearchForm />
+          <Nav />
+
+          <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
+
+
+  {/*<BrowserRouter>
     <div className="container">
       <SearchForm />
       <Nav />
+        <Route exact path="/" component={PhotoContainer} />
+    
+
 
         <Switch>
           <Route exact path="/" component={PhotoContainer} />
@@ -32,11 +71,11 @@ const App = () => (
         {/*<Route exact path="/" component={PhotoContainer} />
         <Route path={`${match.path}/birds`} render={ () => <PhotoContainer data={} /> } />
         <Route path={`${match.path}/whales`} render={ () => <PhotoContainer data={} /> } />
-<Route path={`${match.path}/flowers`} render={ () => <PhotoContainer data={} /> } />*/}
+<Route path={`${match.path}/flowers`} render={ () => <PhotoContainer data={} /> } />
 
     </div>
   </BrowserRouter>
-);
+); */}
 
 export default App;
 
