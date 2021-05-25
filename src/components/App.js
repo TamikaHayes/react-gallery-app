@@ -1,5 +1,6 @@
 import React from 'react';
 import apiKey from '../config';
+import axios from  'axios';
 import {
   BrowserRouter,
   Route,
@@ -29,9 +30,9 @@ const App = () => (
         </Switch>
 
         {/*<Route exact path="/" component={PhotoContainer} />
-        <Route path={`${match.path}/birds`} render={ () => <PhotoContainer title='Birds' /> } />
-        <Route path={`${match.path}/whales`} render={ () => <PhotoContainer title='Whales' /> } />
-<Route path={`${match.path}/flowers`} render={ () => <PhotoContainer title='Flowers' /> } />*/}
+        <Route path={`${match.path}/birds`} render={ () => <PhotoContainer data={} /> } />
+        <Route path={`${match.path}/whales`} render={ () => <PhotoContainer data={} /> } />
+<Route path={`${match.path}/flowers`} render={ () => <PhotoContainer data={} /> } />*/}
 
     </div>
   </BrowserRouter>
