@@ -4,9 +4,9 @@ const Nav = () => {
     return (
         
         <ul className="main-nav">
-          <li><a href='#'>Cats</a></li>
-          <li><a href='#'>Dogs</a></li>
-          <li><a href='#'>Computers</a></li>
+          <li><a href='#'>Birds</a></li>
+          <li><a href='#'>Whales</a></li>
+          <li><a href='#'>Flowers</a></li>
         </ul>
      
     );
