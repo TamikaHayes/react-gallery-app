@@ -18,7 +18,9 @@ const App = () => (
       <SearchForm />
       <Nav />
         <Route exact path="/" component={PhotoContainer} />
-        
+        <Route path="/birds" render={ () => <PhotoContainer />} />
+        <Route path="/whales" render={ () => <PhotoContainer />} />
+        <Route path="/flowers" render={ () => <PhotoContainer />} />
 
       {/*<Switch>
         <Route exact path="/" component={PhotoContainer} />
