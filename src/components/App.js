@@ -12,15 +12,16 @@ import Nav from './Nav';
 import PhotoContainer from './PhotoContainer';
 
 
+
 const App = () => (
   <BrowserRouter>
     <div className="container">
       <SearchForm />
       <Nav />
         <Route exact path="/" component={PhotoContainer} />
-        <Route path="/birds" render={ () => <PhotoContainer />} />
-        <Route path="/whales" render={ () => <PhotoContainer />} />
-        <Route path="/flowers" render={ () => <PhotoContainer />} />
+        <Route path="/birds" render={ () => <PhotoContainer title='Birds' /> } />
+        <Route path="/whales" render={ () => <PhotoContainer title='Whales' /> } />
+        <Route path="/flowers" render={ () => <PhotoContainer title='Flowers' /> } />
 
       {/*<Switch>
         <Route exact path="/" component={PhotoContainer} />
