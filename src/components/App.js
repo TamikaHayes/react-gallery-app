@@ -21,6 +21,7 @@ class App extends Component {
     super();
     this.state = {
       photos: [],
+      loading: true,
       birds: []
     };
   }
@@ -34,7 +35,7 @@ class App extends Component {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
       console.log(responseData);
-      this.setState({ photos: responseData.data.photos.photo });
+      this.setState({ photos: responseData.data.photos.photo, loading: false });
       this.setState({ birds: responseData.data.photos.photo });
     })
     .catch(error => {
@@ -50,10 +51,16 @@ class App extends Component {
           <SearchForm onSearch={this.performSearch} />
           <Nav />
 
-          <Switch>
-            <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
-            <Route path="/birds" render={ () => <PhotoContainer data={this.state.birds} /> } />
-          </Switch>
+          {
+            (this.state.loading)
+            ? <p>Loading...</p>
+            : <Switch>
+                <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
+                <Route path="/birds" render={ () => <PhotoContainer data={this.state.birds} /> } />
+              </Switch>       
+          }
+
+          
         </div>
       </BrowserRouter>
     );
