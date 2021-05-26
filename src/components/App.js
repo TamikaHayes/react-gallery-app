@@ -22,7 +22,8 @@ class App extends Component {
     this.state = {
       photos: [],
       loading: true,
-      birds: []
+      birds: [],
+      whales: []
     };
   }
 
@@ -37,6 +38,9 @@ class App extends Component {
       console.log(responseData);
       this.setState({ photos: responseData.data.photos.photo, loading: false });
       this.setState({ birds: responseData.data.photos.photo });
+      query = 'whales';
+      this.setState({ whales: responseData.data.whales.photo });
+      
     })
     .catch(error => {
       console.log('Error fetching and parsing data', error);
@@ -56,7 +60,8 @@ class App extends Component {
             ? <p>Loading...</p>
             : <Switch>
                 <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
-                <Route path="/birds" render={ () => <PhotoContainer data={this.state.birds} /> } />
+                <Route path="/birds" render={ () => <PhotoContainer title='Birds' data={this.state.birds} /> } />
+                <Route path="/whales" render={ () => <PhotoContainer title='Whales' data={this.state.whales} /> } />
               </Switch>       
           }
 
