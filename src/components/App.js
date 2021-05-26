@@ -20,19 +20,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      photos: []
+      photos: [],
+      birds: []
     };
   }
 
   componentDidMount() {
     this.performSearch();
+    
   }
 
- performSearch = (query) => {
+ performSearch = (query = 'songbirds') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
       console.log(responseData);
       this.setState({ photos: responseData.data.photos.photo });
+      this.setState({ birds: responseData.data.photos.photo });
     })
     .catch(error => {
       console.log('Error fetching and parsing data', error);
@@ -47,7 +50,10 @@ class App extends Component {
           <SearchForm onSearch={this.performSearch} />
           <Nav />
 
-          <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
+          <Switch>
+            <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
+            <Route path="/birds" render={ () => <PhotoContainer data={this.state.birds} /> } />
+          </Switch>
         </div>
       </BrowserRouter>
     );
