@@ -25,15 +25,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getBirdPhotos();
+    this.performSearch();
   }
 
- getBirdPhotos = () => {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=birds&safe_search=&per_page=24&format=json&nojsoncallback=1`)
+ performSearch = (query) => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
       console.log(responseData);
       this.setState({ photos: responseData.data.photos.photo });
     })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    });
   }
 
   render() {
@@ -41,7 +44,7 @@ class App extends Component {
     return(
       <BrowserRouter>
         <div className="container">
-          <SearchForm />
+          <SearchForm onSearch={this.performSearch} />
           <Nav />
 
           <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
@@ -52,14 +55,7 @@ class App extends Component {
 }
 
 
-  {/*<BrowserRouter>
-    <div className="container">
-      <SearchForm />
-      <Nav />
-        <Route exact path="/" component={PhotoContainer} />
-    
-
-
+  {/*    
         <Switch>
           <Route exact path="/" component={PhotoContainer} />
           <Route path="/birds" render={ () => <PhotoContainer title='Birds' /> } />
