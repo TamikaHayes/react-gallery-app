@@ -1,3 +1,12 @@
+/**
+ * Treehouse FSJS Techdegree
+ * Project 7 - React Photo Gallery
+ * Tamika Hayes
+ * May 26, 2021
+ * index.js
+ */
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';

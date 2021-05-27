@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-{/*const Nav = ({match}) => { */}
 const Nav = () => { 
     return (
         
@@ -9,13 +8,7 @@ const Nav = () => {
           <li><NavLink to="/birds" >Birds</NavLink></li>
           <li><NavLink to="/whales">Whales</NavLink></li>
           <li><NavLink to="/flowers">Flowers</NavLink></li>
-          
-          
-          {/*<li><NavLink to={`${match.url}/birds`}>Birds</NavLink></li>
-          <li><NavLink to={`${match.url}/whales`}>Whales</NavLink></li>
-    <li><NavLink to={`${match.url}/flowers`}>Flowers</NavLink></li>*/}
         </ul>
-     
     );
 }
 

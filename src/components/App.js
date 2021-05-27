@@ -1,3 +1,11 @@
+/**
+ * Treehouse FSJS Techdegree
+ * Project 7 - React Photo Gallery
+ * Tamika Hayes
+ * May 26, 2021
+ * App.js
+ */
+
 import React, { Component } from 'react';
 import apiKey from '../config';
 import axios from  'axios';
@@ -11,20 +19,19 @@ import {
 import SearchForm from './SearchForm';
 import Nav from './Nav';
 import PhotoContainer from './PhotoContainer';
-import NotFound from './NotFound';
 
 
-{/*const App = ({match}) => (*/}
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
       photos: [],
-      loading: true,
       birds: [],
       whales: [],
-      flowers: []
+      flowers: [],
+      query: [],
+      loading: true
     };
   }
 
@@ -35,11 +42,11 @@ class App extends Component {
     this.getFlowerPhotos();
     
   }
-
- performSearch = (query = 'songbirds') => {
+ //Search bar function
+ performSearch = (query = 'ships') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      console.log(responseData);
+    {/* console.log(responseData); */}
       this.setState({ photos: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -47,10 +54,11 @@ class App extends Component {
     });
   }
 
+  //Birds nav button function
   getBirdPhotos = () => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=songbirds&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      console.log(responseData);
+      {/* console.log(responseData); */}
       this.setState({ birds: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -58,10 +66,11 @@ class App extends Component {
     });
   }
 
+  //Whales nav button function
   getWhalePhotos = () => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=whales&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      console.log(responseData);
+      {/* console.log(responseData); */}
       this.setState({ whales: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -69,10 +78,11 @@ class App extends Component {
     });
   }
 
+  //Flowers nav button function
   getFlowerPhotos = () => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=flowers&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      console.log(responseData);
+      {/* console.log(responseData); */}
       this.setState({ flowers: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -81,11 +91,11 @@ class App extends Component {
   }
 
   render() {
-    {console.log(this.state.photos)}
+    {/* {console.log(this.state.photos)} */}
     return(
       <BrowserRouter>
         <div className="container">
-          <SearchForm onSearch={this.performSearch} />
+          <SearchForm onSearch={this.performSearch.bind(this)} />
           <Nav />
 
           {
@@ -96,6 +106,7 @@ class App extends Component {
                 <Route path="/birds" render={ () => <PhotoContainer title='Birds' data={this.state.birds} /> } />
                 <Route path="/whales" render={ () => <PhotoContainer title='Whales' data={this.state.whales} /> } />
                 <Route path="/flowers" render={ () => <PhotoContainer title='Flowers' data={this.state.flowers} /> } />
+                <Route path="/search/:query" render={ () => <PhotoContainer title='Search Results' data={this.state.query} /> } />
               </Switch>       
           }
 
@@ -105,25 +116,6 @@ class App extends Component {
     );
   }
 }
-
-
-  {/*    
-        <Switch>
-          <Route exact path="/" component={PhotoContainer} />
-          <Route path="/birds" render={ () => <PhotoContainer title='Birds' /> } />
-          <Route path="/whales" render={ () => <PhotoContainer title='Whales' /> } />
-          <Route path="/flowers" render={ () => <PhotoContainer title='Flowers' /> } />
-        <Route component={NotFound} />
-        </Switch>
-
-        {/*<Route exact path="/" component={PhotoContainer} />
-        <Route path={`${match.path}/birds`} render={ () => <PhotoContainer data={} /> } />
-        <Route path={`${match.path}/whales`} render={ () => <PhotoContainer data={} /> } />
-<Route path={`${match.path}/flowers`} render={ () => <PhotoContainer data={} /> } />
-
-    </div>
-  </BrowserRouter>
-); */}
 
 export default App;
 

@@ -1,7 +1,15 @@
 
 # react-gallery-app
- This photo gallery is built using Create React App and React Router. It fetches data from the Flickr API to display images from three different categories, and also includes a search feature.
+ This photo gallery is built using Create React App and React Router. It fetches data from the Flickr API to display images from three different categories, and users can navgate between image categories with the app's navigation links or the browser's forward and back buttons. The app also includes a search bar feature, so that the user can explore other image categories.
 
+This app functions using a non-commercial Flickr API key. To run the app, please apply for your own Flickr API key (https://www.flickr.com/services/apps/create/apply/).
+
+You'll also need to create your own config.js file. The config.js file should look something like this:
+
+    const apiKey = 'YOUR API KEY';
+    export default apiKey;
+
+Enjoy the photo gallery!
 
 
 
