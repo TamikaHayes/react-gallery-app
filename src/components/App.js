@@ -23,12 +23,16 @@ class App extends Component {
       photos: [],
       loading: true,
       birds: [],
-      whales: []
+      whales: [],
+      flowers: []
     };
   }
 
   componentDidMount() {
     this.performSearch();
+    this.getBirdPhotos();
+    this.getWhalePhotos();
+    this.getFlowerPhotos();
     
   }
 
@@ -37,10 +41,39 @@ class App extends Component {
     .then(responseData => {
       console.log(responseData);
       this.setState({ photos: responseData.data.photos.photo, loading: false });
-      this.setState({ birds: responseData.data.photos.photo });
-      query = 'whales';
-      this.setState({ whales: responseData.data.whales.photo });
-      
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    });
+  }
+
+  getBirdPhotos = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=songbirds&safe_search=&per_page=24&format=json&nojsoncallback=1`)
+    .then(responseData => {
+      console.log(responseData);
+      this.setState({ birds: responseData.data.photos.photo, loading: false });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    });
+  }
+
+  getWhalePhotos = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=whales&safe_search=&per_page=24&format=json&nojsoncallback=1`)
+    .then(responseData => {
+      console.log(responseData);
+      this.setState({ whales: responseData.data.photos.photo, loading: false });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    });
+  }
+
+  getFlowerPhotos = () => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=flowers&safe_search=&per_page=24&format=json&nojsoncallback=1`)
+    .then(responseData => {
+      console.log(responseData);
+      this.setState({ flowers: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
       console.log('Error fetching and parsing data', error);
@@ -62,6 +95,7 @@ class App extends Component {
                 <Route exact path="/" render={() => <PhotoContainer data={this.state.photos}/> } />
                 <Route path="/birds" render={ () => <PhotoContainer title='Birds' data={this.state.birds} /> } />
                 <Route path="/whales" render={ () => <PhotoContainer title='Whales' data={this.state.whales} /> } />
+                <Route path="/flowers" render={ () => <PhotoContainer title='Flowers' data={this.state.flowers} /> } />
               </Switch>       
           }
 
