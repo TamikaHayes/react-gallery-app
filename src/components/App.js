@@ -45,7 +45,6 @@ class App extends Component {
  performSearch = (query = 'ships') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-    {/* console.log(responseData); */}
       this.setState({ photos: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -57,7 +56,6 @@ class App extends Component {
   getBirdPhotos = () => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=songbirds&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      {/* console.log(responseData); */}
       this.setState({ birds: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -69,7 +67,6 @@ class App extends Component {
   getWhalePhotos = () => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=whales&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      {/* console.log(responseData); */}
       this.setState({ whales: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -81,7 +78,6 @@ class App extends Component {
   getFlowerPhotos = () => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=flowers&safe_search=&per_page=24&format=json&nojsoncallback=1`)
     .then(responseData => {
-      {/* console.log(responseData); */}
       this.setState({ flowers: responseData.data.photos.photo, loading: false });
     })
     .catch(error => {
@@ -90,7 +86,6 @@ class App extends Component {
   }
 
   render() {
-    {/* {console.log(this.state.photos)} */}
     return(
       <BrowserRouter>
         <div className="container">

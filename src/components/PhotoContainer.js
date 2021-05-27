@@ -16,7 +16,6 @@ class PhotoContainer extends Component {
         photos = <NotFound />
     }
 
-    {/* {console.log(photos)} */}
     return (
         <div className="photo-container">
             <h2>{this.props.title}</h2>
