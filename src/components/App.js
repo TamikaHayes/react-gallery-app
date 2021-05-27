@@ -30,7 +30,6 @@ class App extends Component {
       birds: [],
       whales: [],
       flowers: [],
-      query: [],
       loading: true
     };
   }
@@ -106,7 +105,7 @@ class App extends Component {
                 <Route path="/birds" render={ () => <PhotoContainer title='Birds' data={this.state.birds} /> } />
                 <Route path="/whales" render={ () => <PhotoContainer title='Whales' data={this.state.whales} /> } />
                 <Route path="/flowers" render={ () => <PhotoContainer title='Flowers' data={this.state.flowers} /> } />
-                <Route path="/search/:query" render={ () => <PhotoContainer title='Search Results' data={this.state.query} /> } />
+                <Route path="/search/:query" render={ () => <PhotoContainer title='Search Results' data={this.state.photos} /> } />
               </Switch>       
           }
 
